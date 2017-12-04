@@ -1,0 +1,23 @@
+image:
+  - Visual Studio 2017  
+
+environment:
+  CTEST_OUTPUT_ON_FAILURE: 1
+  matrix:
+    - TOOLSET: v140
+    - TOOLSET: v141
+    
+configuration:
+  - Release
+  
+cache:
+  C:/.hunter
+
+build_script:
+- cmd: >-
+    cmake . -B_build -G "Visual Studio 15"
+    
+    cmake --build _build --config "configuration"
+    
+test_script:
+  - cmake --build _build --config %configuration% --target RUN_TESTS

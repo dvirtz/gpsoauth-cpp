@@ -1,0 +1,23 @@
+dist: trusty
+sudo: false
+language: cpp
+
+env:
+  CTEST_OUTPUT_ON_FAILURE=1
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-5
+
+cache:
+  directories:
+    - $HOME/.local
+    - $HOME/.hunter
+
+script:
+  - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake . -B_build -DCMAKE_BUILD_TYPE=Release
+  - cmake --build _build -- -j2 
+  - cmake --build _build --target test
