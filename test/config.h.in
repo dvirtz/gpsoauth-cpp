@@ -1,0 +1,3 @@
+#pragma once
+
+static const auto config_yaml = "@CONFIG_YAML_PATH@";
