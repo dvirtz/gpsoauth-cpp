@@ -3,6 +3,10 @@ image:
 
 environment:
   CTEST_OUTPUT_ON_FAILURE: 1
+  GE_TEST:
+    secure: 5qMrOHHczQ199BLCNH6c9iXCv/zu4pJjNqyKVWG5B+g=
+  GP_TEST:
+    secure: B5Z6Y7b6W5n7SiO0fXa2Kw==
   matrix:
     - TOOLSET: v140
     - TOOLSET: v141
@@ -14,10 +18,9 @@ cache:
   C:/.hunter
 
 build_script:
-- cmd: >-
-    cmake . -B_build -G "Visual Studio 15"
-    
-    cmake --build _build --config "configuration"
+  - cmake -P cmake/UpdateTestConfig.cmake
+  - cmake . -B_build -G "Visual Studio 15"
+  - cmake --build _build --config %configuration%
     
 test_script:
   - cmake --build _build --config %configuration% --target RUN_TESTS

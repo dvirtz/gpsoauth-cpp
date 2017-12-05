@@ -1,23 +1,24 @@
 dist: trusty
 sudo: false
 language: cpp
-
 env:
-  CTEST_OUTPUT_ON_FAILURE=1
-
+  matrix:
+  - CTEST_OUTPUT_ON_FAILURE=1
+  global:
+  - secure: rwJ2RrIXh3BoVXa+cvhmf/G+9WyEuj842o8rfMlxZCvpvVKRpTeDJltOmzGttyWdVJ62OkkbLYpBSNLvmSWsvjyiapBrGITMFskY0+otdy38a7/YVDp0X80n2XQyZFlNtISp00DRDGItKECPxHcSR3YzjG0tXoS30FudfqCj3QDcGFbLxske/LLOkZOzV9No2oGwoUhQCrWLqmAXAUUIGS7JzclACY6lH5rq2z21CE1aU1ZlcmcysspBt9P7r/mtr1iqvzCIp1P6HLnSNU7V8DpMog/84SdsnPBSxqOHe7KYHY5kmKnluEKEl/4XY+yfdafJqIxVkZrniqREKCz/YDgG6p2/HyKEpJ7iCvYlziXhTOX7uXLZUCTNulAQ4J06GRv9dR3daWQJafj3Cq7u+LvBUhyjZ9DkoJx+k7jW/lnAIQrZTHBgT7hYaAQmczCc4oR4UxlHp7WBXnkQsyiZ2G3LqaKYbXxfexy4+ZfEXhLY11HxJ9rMGqcUllIsywJ0URcHs1J4i92wTT1qpKH6G8S6qguA4uT71n0wo5SRqL9mGsNA9ipPNg6loRzU8UgD0n5Xhg2qeJgzXx4UUWC2T7A/RAt5H5r+k8vRTi2AUKMcmQOomuN3Dz+VjIBqoztjk/uiECv5VbG/uI3CsMgQ+C4An8B7DHoe9r4bOSB9sHU=
+  - secure: JvavozwnBuiKTl+rh4MO1M91BhtQPMiml+ZHE76N/9zzwFSzt2GZnsd5xMmSs0ZU2DTUYcXFX5xc/gVMz74g+aqWVc3m00ZDC+t1ViaGj7yeO4JsctcvEChCh0KR9TbLDnXutmjOONsQUJWd4ABtgLfSG9sRHInJ9DP0MN1g235l16hcw08nFNCONrwK5Wr23O140XStCYNISaDh/E9ShXbN5uxTcOxm0T4UuNj91PbbUvge0/YRwvyV3bnXY3ICONA8jYaDZWYCaNQjUf5aSiAbvitFLm0CllMeJ0bmoHqzid8nvmkcE6/qdXceiqJ3OBigVLFdLyl4cyz+m0+ekBL3oHUWUGFxLyJHjBVnZMSEaRYzy8Y4uUwRO3TUe1w7lx6ylQgmhm+pu+VzAi1RT7SBPUubD5i9Yg0YBLqhhtRf+NW7BADdbKBKEAdo5JGuFDIByUN22ySn+BL+5bQ6Z3wJmuDTrjjjmxVkkUeeGifTWKUptiWDVV/lYdQF8dF8RoUKLHsZBcLwufttYx6LGWoKYJN2yssj5gRfOayqA8E5looE8ZM6fREAiviD0hHGOCT2rh5n4NoH966VItrFDL/s+ZlALO/Kufb9t3TDPVmINLrniThYa80rDpiDGDhaY4D8i95o54oa8CA+4wFojSwRV8DiqTbjn2eY07QsK5w=
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-5
-
+    - g++-5
 cache:
   directories:
-    - $HOME/.local
-    - $HOME/.hunter
-
+  - "$HOME/.local"
+  - "$HOME/.hunter"
 script:
-  - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake . -B_build -DCMAKE_BUILD_TYPE=Release
-  - cmake --build _build -- -j2 
-  - cmake --build _build --target test
+- cmake -P cmake/UpdateTestConfig.cmake
+- CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake . -B_build -DCMAKE_BUILD_TYPE=Release
+- cmake --build _build -- -j2
+- cmake --build _build --target test
