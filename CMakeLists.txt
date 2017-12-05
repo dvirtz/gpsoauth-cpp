@@ -9,6 +9,8 @@ HunterGate(
 
 project(gpsoauth-cpp VERSION 0.1)
 
+set(CMAKE_CXX_STANDARD 14)
+
 option(BUILD_TESTS "Whether to build tests" ON)
 
 hunter_add_package(cpr)
