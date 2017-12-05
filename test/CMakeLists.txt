@@ -1,6 +1,6 @@
 add_executable(tests TestsMain.cpp Tests.cpp config.h.in)
 
-set(CONFIG_YAML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/config.yaml CACHE PATH "Path of config.yaml")
+set(CONFIG_YAML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/config.yml CACHE PATH "Path to test configuration file")
 
 configure_file(config.h.in config.h @ONLY)
 
