@@ -1,5 +1,6 @@
 #pragma once
 #include "gpsoauth/StringMap.h"
+#include <vector>
 
 namespace CryptoPP {
 class RSAFunction;
