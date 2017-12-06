@@ -6,7 +6,7 @@
 #include <yaml-cpp/yaml.h>
 
 auto config = YAML::LoadFile(config_yaml);
-static auto conf(const std::string &prop) {
+static std::string conf(const std::string &prop) {
   return config[prop].as<std::string>();
 };
 
@@ -34,6 +34,7 @@ TEST_CASE("login") {
   SECTION("login with valid credentials succeeds") {
     auto response = GPSOAuthClient::performMasterLogin(
         conf("email"), conf("password"), conf("androidId"));
+    INFO(response["error"]);
     REQUIRE(response.count("Token") == 1);
   }
 }
@@ -42,10 +43,12 @@ TEST_CASE("OAuth") {
   SECTION("OAuth with valid credentials succeeds") {
     auto response = GPSOAuthClient::performMasterLogin(
         conf("email"), conf("password"), conf("androidId"));
+    INFO(response["error"]);
     auto token = response.at("Token");
 
     response = GPSOAuthClient::performOAuth(conf("email"), token, conf("androidId"),
                                                 conf("service"), conf("app"), conf("clientSig"));
+    INFO(response["error"]);
     REQUIRE(response.count("Auth") == 1);
     REQUIRE(response.count("Expiry") == 1);
   }
