@@ -12,13 +12,13 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - g++-5
+    - g++-6
 cache:
   directories:
   - "$HOME/.local"
   - "$HOME/.hunter"
 script:
 - cmake -P cmake/UpdateTestConfig.cmake
-- CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake . -B_build -DCMAKE_BUILD_TYPE=Release
+- CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake . -B_build -DCMAKE_BUILD_TYPE=Release
 - cmake --build _build -- -j2
 - cmake --build _build --target test
