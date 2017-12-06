@@ -44,7 +44,7 @@ GoogleKeyUtils::keyToStruct(const CryptoPP::RSAFunction &key) {
 
 StringMap GoogleKeyUtils::parseAuthResponse(const std::string &text) {
   StringMap res;
-  std::regex partsRe("(\n|^)([^=]+)=(.*)(\n|$)");
+  std::regex partsRe("(\n|^)([^=]+)=([^\n]*)");
   std::transform(std::sregex_iterator(text.begin(), text.end(), partsRe),
                  std::sregex_iterator(), std::inserter(res, res.end()),
                  [&](const std::smatch &m) -> StringMap::value_type {
@@ -64,8 +64,9 @@ std::string GoogleKeyUtils::createSignature(const std::string &email,
   std::array<byte, 133> encrypted;
   encrypted[0] = 0;
 
+  SHA1 sha;
   ArraySource ss1(toStruct.data(), toStruct.size(), true,
-                  new HashFilter(SHA1{}, new ArraySink(
+                  new HashFilter(sha, new ArraySink(
                                              &encrypted[1], 4)));
 
   std::string plaintext = email + '\0' + password;
