@@ -1,6 +1,6 @@
 set(INCLUDE_FOLDER ${CMAKE_SOURCE_DIR}/include/gpsoauth)
 set(SOURCES GPSOAuthClient.cpp GoogleKeyUtils.cpp)
-set(HEADERS ${INCLUDE_FOLDER}/GPSOAuthClient.h)
+set(HEADERS ${INCLUDE_FOLDER}/GPSOAuthClient.h ${INCLUDE_FOLDER}/GoogleKeyUtils.h ${INCLUDE_FOLDER}/StringMap.h)
 
 add_library(GPSOAuthClient ${HEADERS} ${SOURCES})
 
