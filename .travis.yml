@@ -19,6 +19,6 @@ cache:
   - "$HOME/.hunter"
 script:
 - cmake -P cmake/UpdateTestConfig.cmake
-- CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake . -B_build -DCMAKE_BUILD_TYPE=Release
+- CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake . -B_build -DCMAKE_BUILD_TYPE=Release -DHUNTER_JOBS_NUMBER=8
 - cmake --build _build -- -j2
 - cmake --build _build --target test
