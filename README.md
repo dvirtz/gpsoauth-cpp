@@ -3,6 +3,9 @@ A C++ client library for Google Play Services OAuth.
 
 Based on Simon Weber's [Python](https://github.com/simon-weber/gpsoauth) library.
 
+## Build status
+[![Build Status](https://travis-ci.org/dvirtz/gpsoauth-cpp.svg?branch=master)](https://travis-ci.org/dvirtz/gpsoauth-cpp) [![Build status](https://ci.appveyor.com/api/projects/status/0753uvpy8pun19rr?svg=true)](https://ci.appveyor.com/project/dvirtz/gpsoauth-cpp)
+
 ## Example
 ```C++
 #include "gpsoauth/GPSOAuthClient.h"
