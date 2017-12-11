@@ -33,7 +33,7 @@ set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
 
 set(version_config "${generated_dir}/${PROJECT_NAME}ConfigVersion.cmake")
 set(project_config "${generated_dir}/${PROJECT_NAME}Config.cmake")
-set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
+set(targets_export_name "${PROJECT_NAME}Targets")
 set(namespace "${PROJECT_NAME}::")
 
 add_subdirectory(src)
@@ -51,7 +51,7 @@ write_basic_package_version_file(
 )
 
 # Use:
-#   * TARGETS_EXPORT_NAME
+#   * targets_export_name
 #   * PROJECT_NAME
 configure_package_config_file(
     "cmake/Config.cmake.in"
@@ -70,7 +70,7 @@ install(
 )
 
 install(
-    EXPORT "${TARGETS_EXPORT_NAME}"
+    EXPORT "${targets_export_name}"
     NAMESPACE "${namespace}"
     DESTINATION "${config_install_dir}"
 )

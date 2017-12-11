@@ -10,7 +10,7 @@ target_link_libraries(GPSOAuthClient PRIVATE cpr::cpr cryptopp-static)
 
 install(
     TARGETS GPSOAuthClient
-    EXPORT "${TARGETS_EXPORT_NAME}"
+    EXPORT "${targets_export_name}"
     LIBRARY DESTINATION "lib"
     ARCHIVE DESTINATION "lib"
     RUNTIME DESTINATION "bin"
