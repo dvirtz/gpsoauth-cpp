@@ -6,7 +6,7 @@ add_library(GPSOAuthClient ${HEADERS} ${SOURCES})
 
 target_include_directories(GPSOAuthClient PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>)
 
-target_link_libraries(GPSOAuthClient PRIVATE cpr::cpr cryptopp-static)
+target_link_libraries(GPSOAuthClient cpr::cpr cryptopp-static)
 
 install(
     TARGETS GPSOAuthClient
